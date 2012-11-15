@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+
+use strict;
+use warnings;
+
 use Data::Dump qw(pp);
 use Log::Log4perl;
 use Plack::Request;
@@ -31,13 +35,21 @@ my $app = sub {
         'BAC', 'Project Home Page Template'
     );
 
-    $project_url = $homepage->{url};
+    # $project_url = $homepage->{url};
     $homepage->{content} = $homepage_template->{content};
     $wiki->storePage($homepage);
 
+    my $documentation = {
+        space    => $space,
+        title    => 'Documentation',
+        content  => '',
+        parentId => $homepage->{id} 
+    };
+    $documentation = $wiki->storePage($documentation);
+
     return [
         303,
-        [ 'Location'     => $project_url, 
+        [ 'Location'     => $homepage->{url}, 
           'Content-Type' => 'text/plain' ], 
         [ "got data:\n", "logger: ", 
           pp($req->parameters), "\n", 
