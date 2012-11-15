@@ -23,9 +23,10 @@ my $app = sub {
 
     my @parts = split('/', $req->parameters->{url});
 
+    my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    my $page = $wiki->getPage($parts[1], 'test project');
-
+    # my $page = $wiki->getPage($parts[1], 'test project');
+    
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
