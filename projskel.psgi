@@ -22,8 +22,7 @@ my $app = sub {
     my $wiki = Confluence->new($url, 'thomas.malt', 'dtDe8N69k40vMK');
 
     my @parts = split('/', $req->parameters->{url});
-    my $title = pop @parts;
-    my $space = pop @parts;
+    my ($space, $title) = @parts[-2, -1];
 
     my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
