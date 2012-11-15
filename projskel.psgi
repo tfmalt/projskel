@@ -4,10 +4,13 @@ use Log::Log4perl;
 
 my $app = sub {
     my $env = shift;
-    # say dd($env);
+    my $file = psgi.input;
+    my $data = undef;
+    read $file, $data, $env->{CONTENT_LENGTH};
+
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "Hello World again\n", "foobar\n", pp($env) ]
+        [ "got data:\n", $data ]
     ];
 };
