@@ -8,6 +8,6 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "Hello World again\n", "foobar\n", pp($env) ]
+        [ "Hello World again\n", "foobar\n", quote($env) ]
     ];
 };
