@@ -53,8 +53,9 @@ my $app = sub {
     };
     $logger->debug('the data: '. pp($documentation));
 
-    $wiki->storePage($homepage);
-    $documentation = $wiki->storePage($documentation);
+    my $docs = $wiki->storePage($documentation);
+
+    my $home = $wiki->storePage($homepage);
 
     return [
         303,
