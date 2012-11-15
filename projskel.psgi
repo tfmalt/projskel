@@ -13,6 +13,8 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "got data:\n", ref $file, "\n", pp($req->parameters) ]
+        [ "got data:\n", ref $file, "\n", 
+          pp($req->parameters), 
+          pp($env) ]
     ];
 };
