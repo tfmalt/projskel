@@ -48,14 +48,30 @@ my $app = sub {
         space    => $space,
         title    => 'Documentation' . ' - ' . $homepage->{title} ,
         content  => '<ac:macro ac:name="tip"><ac:rich-text-body>
-        <p>Give this page the same name as the project</p></ac:rich-text-body></ac:macro><ac:macro ac:name="info"><ac:rich-text-body>',
+        <p>Add all project documentation under this space.</p></ac:rich-text-body></ac:macro>',
         parentId => $homepage->{id} 
     };
     $logger->debug('the data: '. pp($documentation));
 
     my $docs = $wiki->storePage($documentation);
-    
     my $home = $wiki->storePage($homepage);
+
+    my $plan = {
+        space    => $space,
+        title    => 'Project Plan - ' . $homepage->{title},
+        parentId => $homepage->{id},
+        content  => ''
+    };
+
+    my $mandate = {
+        space    => $space,
+        title    => 'Project Mandate - ' . $homepage->{title},
+        parentId => $homepage->{id},
+        content  => ''
+    };
+
+    $plan    = $wiki->storePage($plan);
+    $mandate => $wiki->storePage($mandate);
 
     return [
         303,
