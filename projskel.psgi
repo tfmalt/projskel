@@ -8,10 +8,16 @@ use Log::Log4perl;
 use Plack::Request;
 use Confluence;
 
+Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
+
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-    $req->logger({ level => 'autospawner', 'message' => "Starting projskel" });
+    
+    my $logger = Log::Log4perl->get_logger('projskel');
+
+    $logger->debug("Starting projskel");
+
     if ($req->method ne 'POST') {
         return [
             405, 
@@ -42,7 +48,8 @@ my $app = sub {
     my $documentation = {
         space    => $space,
         title    => 'Documentation',
-        content  => '',
+        content  => '<ac:macro ac:name="tip"><ac:rich-text-body>
+        <p>Give this page the same name as the project</p></ac:rich-text-body></ac:macro><ac:macro ac:name="info"><ac:rich-text-body>',
         parentId => $homepage->{id} 
     };
     $documentation = $wiki->storePage($documentation);
