@@ -10,6 +10,16 @@ my $app = sub {
     # read $file, $data, $env->{CONTENT_LENGTH};
     my $req = Plack::Request->new($env);
 
+    if ($req->method ne 'POST') {
+        return [
+            405, 
+            [ 'Allow' => 'POST',
+              'Content-Type' => 'text/plain' ],
+            [ 'Method not allowed' ]
+        ];
+        exit;
+    }
+    
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
