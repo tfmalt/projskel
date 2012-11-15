@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use Data::Dump;
+use Data::Dump qw(pp);
 use Log::Log4perl;
 
 my $app = sub {
@@ -8,6 +8,6 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "Hello World again\n", "foobar\n", quote($env) ]
+        [ "Hello World again\n", "foobar\n", pp($env) ]
     ];
 };
