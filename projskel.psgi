@@ -7,7 +7,7 @@ use Confluence;
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-
+    my $logger = $env->{'psgix.logger'};
     if ($req->method ne 'POST') {
         return [
             405, 
@@ -31,7 +31,7 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "got data:\n", ref $file, "\n", 
+        [ "got data:\n", "logger: ", ref $logger, 
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
           "title: ", $title, "  space: ", $space, "\n",
