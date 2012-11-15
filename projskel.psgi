@@ -7,8 +7,8 @@ use Confluence;
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-    my $logger = $env->{'psgix.logger'};
-    $logger->debug("Starting projskel");
+    # my $logger = $env->{'psgix.logger'};
+    # $logger->debug("Starting projskel");
 
     if ($req->method ne 'POST') {
         return [
