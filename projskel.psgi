@@ -7,6 +7,6 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ "Hello World again\n", "foobar", dump($env) ]
+        [ "Hello World again\n", "foobar", dd($env) ]
     ];
 };
