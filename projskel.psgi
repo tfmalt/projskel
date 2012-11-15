@@ -26,8 +26,11 @@ my $app = sub {
     $title =~ s/\+/ /g; # need to wash urlencoding to make titles work
     # my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    my $page = $wiki->getPage($space, $title);
-    
+    my $homepage          = $wiki->getPage($space, $title);
+    my $homepage_template = $wiki->getPage(
+        'BAC', 'Project Home Page Template'
+    );
+
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
@@ -35,7 +38,7 @@ my $app = sub {
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
           "title: ", $title, "  space: ", $space, "\n",
-          pp($page)
+          pp($homepage), pp($homepage_template)
         ]
     ];
 };
