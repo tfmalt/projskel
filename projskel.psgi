@@ -31,11 +31,13 @@ my $app = sub {
         'BAC', 'Project Home Page Template'
     );
 
+    $project_url = $homepage->{url};
     $homepage->{content} = $homepage_template->{content};
     $wiki->storePage($homepage);
 
     return [
-        200,
+        303,
+        [ 'Location' => $project_url ],
         [ 'Content-Type' => 'text/plain' ], 
         [ "got data:\n", "logger: ", 
           pp($req->parameters), "\n", 
