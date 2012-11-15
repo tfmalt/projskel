@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use Data::Dump;
 
 my $app = sub {
     my $env = shift;
@@ -6,6 +7,6 @@ my $app = sub {
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
-        [ 'Hello World again' ]
+        [ "Hello World again\n", "foobar" ]
     ];
 };
