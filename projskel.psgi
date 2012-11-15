@@ -46,7 +46,7 @@ my $app = sub {
 
     my $documentation = {
         space    => $space,
-        title    => 'Documentation',
+        title    => 'Documentation' . ' - ' . $homepage->{title} ,
         content  => '<ac:macro ac:name="tip"><ac:rich-text-body>
         <p>Give this page the same name as the project</p></ac:rich-text-body></ac:macro><ac:macro ac:name="info"><ac:rich-text-body>',
         parentId => $homepage->{id} 
@@ -54,7 +54,7 @@ my $app = sub {
     $logger->debug('the data: '. pp($documentation));
 
     my $docs = $wiki->storePage($documentation);
-
+    
     my $home = $wiki->storePage($homepage);
 
     return [
