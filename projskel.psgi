@@ -23,7 +23,7 @@ my $app = sub {
 
     my @parts = split('/', $req->parameters->{url});
 
-    # $wiki->getPage()
+    my $page = $wiki->getPage($parts[1], $parts[2]);
 
     return [
         200,
@@ -31,7 +31,7 @@ my $app = sub {
         [ "got data:\n", ref $file, "\n", 
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
-          pp(@parts) 
+          pp(@parts), "\n", pp($page) 
         ]
     ];
 };
