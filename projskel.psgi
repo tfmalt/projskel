@@ -7,7 +7,7 @@ use Confluence;
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-    $req->logger({ level => 'debug', 'message' => "Starting projskel" });
+    $req->logger({ level => 'autospawner', 'message' => "Starting projskel" });
     if ($req->method ne 'POST') {
         return [
             405, 
