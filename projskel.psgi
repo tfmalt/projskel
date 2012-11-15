@@ -40,10 +40,9 @@ my $app = sub {
     my $homepage_template = $wiki->getPage(
         'BAC', 'Project Home Page Template'
     );
-
+    $logger->debug('the homepage: ' . pp($homepage));
     # $project_url = $homepage->{url};
     $homepage->{content} = $homepage_template->{content};
-    $wiki->storePage($homepage);
 
     my $documentation = {
         space    => $space,
@@ -52,6 +51,9 @@ my $app = sub {
         <p>Give this page the same name as the project</p></ac:rich-text-body></ac:macro><ac:macro ac:name="info"><ac:rich-text-body>',
         parentId => $homepage->{id} 
     };
+    $logger->debug('the data: '. pp($documentation));
+
+    $wiki->storePage($homepage);
     $documentation = $wiki->storePage($documentation);
 
     return [
