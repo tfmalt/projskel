@@ -31,6 +31,9 @@ my $app = sub {
         'BAC', 'Project Home Page Template'
     );
 
+    $homepage->{content} = $homepage_template->{content};
+    $wiki->storePage($homepage);
+
     return [
         200,
         [ 'Content-Type' => 'text/plain' ], 
