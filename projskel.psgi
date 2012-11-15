@@ -22,6 +22,8 @@ my $app = sub {
     my $wiki = Confluence->new($url, 'thomas.malt', 'dtDe8N69k40vMK');
 
     my @parts = split('/', $req->parameters->{url});
+    my $title = shift @parts;
+    my $space = shift @parts;
 
     my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
@@ -33,7 +35,7 @@ my $app = sub {
         [ "got data:\n", ref $file, "\n", 
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
-          pp(@parts), "\n", pp($page) 
+          "title: ", $title, "  space: ", $space
         ]
     ];
 };
