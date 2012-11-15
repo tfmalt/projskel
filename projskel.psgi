@@ -23,7 +23,7 @@ my $app = sub {
 
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];
-    $title =~ s/\+/ /g;
+    $title =~ s/\+/ /g; # need to wash urlencoding to make titles work
     # my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
     my $page = $wiki->getPage($space, $title);
