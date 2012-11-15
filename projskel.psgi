@@ -24,9 +24,9 @@ my $app = sub {
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];
 
-    my $page = "";
+    # my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    # my $page = $wiki->getPage($parts[1], 'test project');
+    my $page = $wiki->getPage($space, $title);
     
     return [
         200,
@@ -34,7 +34,8 @@ my $app = sub {
         [ "got data:\n", ref $file, "\n", 
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
-          "title: ", $title, "  space: ", $space
+          "title: ", $title, "  space: ", $space, "\n",
+          pp($page)
         ]
     ];
 };
