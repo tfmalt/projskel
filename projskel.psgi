@@ -26,7 +26,7 @@ my $app = sub {
 
     # my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    my $page = $wiki->getPage($space, $title);
+    my $page = $wiki->getPage($space, "test project");
     
     return [
         200,
