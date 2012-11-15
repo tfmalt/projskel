@@ -24,7 +24,7 @@ my $app = sub {
     my @parts = split('/', $req->parameters->{url});
 
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    my $page = $wiki->getPage($parts[1], 'test form');
+    my $page = $wiki->getPage($parts[1], 'test project');
 
     return [
         200,
