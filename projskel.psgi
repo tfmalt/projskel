@@ -23,10 +23,10 @@ my $app = sub {
 
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];
-
+    $title =~ s/+/ /g;
     # my $page = "";
     # $page = $wiki->getPage('IN', 'List of Project Document Templates');
-    my $page = $wiki->getPage($space, "test project");
+    my $page = $wiki->getPage($space, $title);
     
     return [
         200,
