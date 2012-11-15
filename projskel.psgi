@@ -11,7 +11,7 @@ my $app = sub {
     # read $file, $data, $env->{CONTENT_LENGTH};
     
     my $req = Plack::Request->new($env);
-    my $url = "http://wiki.startsiden.no/rpc/xmlrpc";
+    my $url = "http://wiki.startsiden.no:8080/rpc/xmlrpc";
     my $wiki = Confluence->new($url, 'thomas.malt', 'dtDe8N69k40vMK');
 
     if ($req->method ne 'POST') {
