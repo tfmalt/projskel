@@ -37,8 +37,8 @@ my $app = sub {
 
     return [
         303,
-        [ 'Location' => $project_url ],
-        [ 'Content-Type' => 'text/plain' ], 
+        [ 'Location'     => $project_url, 
+          'Content-Type' => 'text/plain' ], 
         [ "got data:\n", "logger: ", 
           pp($req->parameters), "\n", 
           pp($env), "\n", ref($wiki), "\n",
