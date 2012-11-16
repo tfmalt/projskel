@@ -29,7 +29,7 @@ my $app = sub {
     }
    
     my $url  = "http://wiki.startsiden.no:8080/rpc/xmlrpc";
-    my $wiki = Confluence->new($url, 'thomas.malt', 'dtDe8N69k40vMK');
+    my $wiki = Confluence->new($url, $user, $pass);
 
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];
