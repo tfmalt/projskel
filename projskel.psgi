@@ -21,8 +21,7 @@ my $app = sub {
     $logger->debug("Dumping env: " . pp($env));
 
     my $config = YAML::XS::LoadFile($dir.'/etc/config.yml');
-    $logger->debug("Dumping config:");
-    $logger->debug(pp($config));
+    $logger->debug("Dumping config:\n" . pp($config));
 
     if ($req->method ne 'POST') {
         return [

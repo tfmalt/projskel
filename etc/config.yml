@@ -2,4 +2,12 @@
 rpcurl: "http://wiki.startsiden.no:8080/rpc/xmlrpc"
 user: username
 pass: password
+template_space: 'IN'
+templates:
+    homepage: "Project Home Page Template"
+    docs:     "Project Documentation Main Page Template"
+    minutes:  "Project Meeting Minutes Main Page Template"
+    mandate:  "Project Mandate Template"
+    plan:     "Project Plan Template"
+    status:   "Project Status Reports Main Page"
 
