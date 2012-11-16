@@ -10,11 +10,11 @@ use Confluence;
 use Cwd;
 
 # Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
+my $dir = getcwd;    
 
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-    my $dir = getcwd;    
     my $logger = Log::Log4perl->get_logger('projskel');
     my $config = YAML::XS::LoadFile($dir.'/etc/config.yml');
 
