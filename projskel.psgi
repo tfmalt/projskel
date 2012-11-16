@@ -7,15 +7,16 @@ use Data::Dump qw(pp);
 use Log::Log4perl;
 use Plack::Request;
 use Confluence;
+use File::Basename;
 
 # Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
 
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
-    
+    my $dir = dirname($0);    
     my $logger = Log::Log4perl->get_logger('projskel');
-    my $config = YAML::XS::LoadFile('etc/config.yml');
+    my $config = YAML::XS::LoadFile($dir.'/etc/config.yml');
 
     $logger->debug("Starting projskel");
     $logger->debug("Dumping config:");
