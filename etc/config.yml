@@ -1,0 +1,5 @@
+---
+rpcurl: "http://wiki.startsiden.no:8080/rpc/xmlrpc"
+user: username
+pass: password
+
