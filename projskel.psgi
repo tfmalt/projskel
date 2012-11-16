@@ -10,7 +10,7 @@ use Confluence;
 use File::Basename;
 
 # Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
-my $dir = basename(__FILE__);    
+my $dir = dirname(__FILE__);    
 
 my $app = sub {
     my $env = shift;
