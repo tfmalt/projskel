@@ -77,7 +77,7 @@ my $app = sub {
     };
 
     $plan    = $wiki->storePage($plan);
-    $mandate => $wiki->storePage($mandate);
+    $mandate = $wiki->storePage($mandate);
 
     return [
         303,
