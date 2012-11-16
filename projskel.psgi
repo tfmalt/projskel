@@ -8,15 +8,18 @@ use Log::Log4perl;
 use Plack::Request;
 use Confluence;
 
-Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
+# Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
 
 my $app = sub {
     my $env = shift;
     my $req = Plack::Request->new($env);
     
     my $logger = Log::Log4perl->get_logger('projskel');
+    my $config = YAML::XS::LoadFile('etc/config.yml');
 
     $logger->debug("Starting projskel");
+    $logger->debug("Dumping config:");
+    $logger->debug(pp($config));
 
     if ($req->method ne 'POST') {
         return [
