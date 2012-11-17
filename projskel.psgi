@@ -8,6 +8,7 @@ use Log::Log4perl;
 use Plack::Request;
 use Confluence;
 use File::Basename;
+use Startsiden::Confluence::ProjectSkeleton; 
 
 my $dir = dirname(__FILE__);    
 
@@ -19,9 +20,6 @@ my $app = sub {
     $logger->debug("Starting projskel");
     $logger->debug("Dumping env: " . pp($env));
 
-    my $config = YAML::XS::LoadFile($dir.'/etc/config.yml');
-    $logger->debug("Dumping config:\n" . pp($config));
-
     if ($req->method ne 'POST') {
         return [
             405, 
@@ -32,9 +30,7 @@ my $app = sub {
         exit;
     }
    
-    my $wiki = Confluence->new(
-        $config->{rpcurl}, $config->{user}, $config->{pass}
-    );
+    my $ps = Startsiden::Confluence::ProjectSkeleton->new(logger => $logger);
 
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];

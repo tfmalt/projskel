@@ -1,10 +1,12 @@
 package Startsiden::Confluence::ProjectSkeleton;
+
 use Moose;
 use namespace::autoclean;
 use File::Basename;
 use Carp;
 use YAML::XS;
 use Data::Dump;
+use Confluence;
 
 has 'config' => (
 	isa     => 'HashRef',
@@ -25,6 +27,13 @@ has 'logger' => (
 	is  => 'rw',
 ); 
 
+has 'wiki' => (
+    isa     => 'Confluence',
+    is      => 'ro',
+    lazy    => 1,
+    builder => '_build_wiki',
+);
+
 sub _load_config {
 	my $self = shift;
 
@@ -40,12 +49,13 @@ sub _load_config {
 	return $config;;
 }
 
-sub BUILD {
-	my $self = shift;
-	my $args = shift;
-	
-	dd($args) if $self->debug;
-	
+sub _build_wiki {
+    my $self = shift;
+
+    my $conf = $self->config;
+    my $wiki = Confluence->new($conf->{rpcurl}, $conf->{user}, $conf->{pass});
+    
+    return $wiki;
 }
 
 __PACKAGE__->meta->make_immutable;
