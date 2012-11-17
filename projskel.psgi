@@ -9,7 +9,6 @@ use Plack::Request;
 use Confluence;
 use File::Basename;
 
-# Log::Log4perl::init_and_watch('../../log4perl.conf', 10);
 my $dir = dirname(__FILE__);    
 
 my $app = sub {
@@ -33,23 +32,20 @@ my $app = sub {
         exit;
     }
    
-    my $url  = "http://wiki.startsiden.no:8080/rpc/xmlrpc";
-    my $user = "";
-    my $pass = "";
-    my $wiki = Confluence->new($url, $user, $pass);
-
+    my $wiki = Confluence->new(
+        $config->{rpcurl}, $config->{user}, $config->{pass}
+    );
 
     my @parts = split('/', $req->parameters->{url});
     my ($space, $title) = @parts[-2, -1];
     $title =~ s/\+/ /g; # need to wash urlencoding to make titles work
-    # my $page = "";
-    # $page = $wiki->getPage('IN', 'List of Project Document Templates');
+
     my $homepage          = $wiki->getPage($space, $title);
     my $homepage_template = $wiki->getPage(
         'BAC', 'Project Home Page Template'
     );
+
     $logger->debug('the homepage: ' . pp($homepage));
-    # $project_url = $homepage->{url};
     $homepage->{content} = $homepage_template->{content};
 
     my $documentation = {
