@@ -30,11 +30,12 @@ my $app = sub {
         exit;
     }
    
-    my $ps = Startsiden::Confluence::ProjectSkeleton->new(logger => $logger);
+    my $ps = Startsiden::Confluence::ProjectSkeleton->new(
+        logger => $logger,
+        params => $req->parameters
+    );
 
-    my @parts = split('/', $req->parameters->{url});
-    my ($space, $title) = @parts[-2, -1];
-    $title =~ s/\+/ /g; # need to wash urlencoding to make titles work
+    $ps->create_project_skeleton();
 
     my $homepage          = $wiki->getPage($space, $title);
     my $homepage_template = $wiki->getPage(
