@@ -35,8 +35,26 @@ my $app = sub {
         params => $req->parameters
     );
 
-    my $result = $ps->create_project_skeleton();
-    # TODO: Add dealing with croaks and wierd results to return correct http code.
+    # Dealing with croaks and wierd unexpected events.
+    eval {
+        my $result = $ps->create_project_skeleton();
+    }
+    if ($@) {
+        return [
+            500,
+            ['content-type' => 'text/html'],
+            ['<html><body>',
+             '<h1>500 - Something wierd, but not entirely unexpected happended</h1>',
+             '<pre>',
+             $@
+             '</pre>',
+             '</body></html>',
+            ],
+        ];
+        exit;
+    }
+
+    # Redirecting back to wiki when everything goes ok.
     return [
         303,
         [ 'Location'     => $homepage->{url}, 
