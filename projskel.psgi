@@ -45,7 +45,7 @@ my $app = sub {
             ['content-type' => 'text/html'],
             ['<html><body>',
              '<h1>500 - Something wierd, but not entirely unexpected happended</h1>',
-             '<tt style="background-color: #ccc; margin: 12px; padding: 8px; border: 1px solid black">',
+             '<tt style="display: block; background-color: #eee; margin: 12px; padding: 8px; border: 1px solid #888">',
              $@,
              '</tt>',
              '</body></html>',
