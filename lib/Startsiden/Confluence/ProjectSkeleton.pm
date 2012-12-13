@@ -166,6 +166,10 @@ sub create_page_from_template {
     my $name = $c->{templates}->{$key}->{name};
     my $tmpl = $w->getPage($ts, $name); 
 
+    if ($key eq 'mandate') {
+        $tmpl = $self->handle_mandate($tmpl);
+    }
+
     my $page = {
         space    => $self->space,
         title    => $c->{templates}->{$key}->{title} . ' - ' 
@@ -177,6 +181,14 @@ sub create_page_from_template {
     $page = $w->storePage($page);
     $self->set_page_id($key, $page->{id});
     
+    return 1;
+}
+
+sub handle_mandate {
+    my ($self, $tmpl) = @_;
+
+    $self->logger->debug('Got handle mandate:' . pp($self->params));
+
     return 1;
 }
 
