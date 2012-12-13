@@ -189,7 +189,7 @@ sub handle_mandate {
 
     $self->logger->debug('Got handle mandate:' . pp($self->params));
 
-    return 1;
+    return $tmpl;
 }
 
 __PACKAGE__->meta->make_immutable;
