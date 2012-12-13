@@ -35,45 +35,8 @@ my $app = sub {
         params => $req->parameters
     );
 
-    $ps->create_project_skeleton();
-
-    my $homepage          = $wiki->getPage($space, $title);
-    my $homepage_template = $wiki->getPage(
-        'BAC', 'Project Home Page Template'
-    );
-
-    $logger->debug('the homepage: ' . pp($homepage));
-    $homepage->{content} = $homepage_template->{content};
-
-    my $documentation = {
-        space    => $space,
-        title    => 'Documentation' . ' - ' . $homepage->{title} ,
-        content  => '<ac:macro ac:name="tip"><ac:rich-text-body>
-        <p>Add all project documentation under this space.</p></ac:rich-text-body></ac:macro>',
-        parentId => $homepage->{id} 
-    };
-    $logger->debug('the data: '. pp($documentation));
-
-    my $docs = $wiki->storePage($documentation);
-    my $home = $wiki->storePage($homepage);
-
-    my $plan = {
-        space    => $space,
-        title    => 'Project Plan - ' . $homepage->{title},
-        parentId => $homepage->{id},
-        content  => ''
-    };
-
-    my $mandate = {
-        space    => $space,
-        title    => 'Project Mandate - ' . $homepage->{title},
-        parentId => $homepage->{id},
-        content  => ''
-    };
-
-    $plan    = $wiki->storePage($plan);
-    $mandate = $wiki->storePage($mandate);
-
+    my $result = $ps->create_project_skeleton();
+    # TODO: Add dealing with croaks and wierd results to return correct http code.
     return [
         303,
         [ 'Location'     => $homepage->{url}, 
