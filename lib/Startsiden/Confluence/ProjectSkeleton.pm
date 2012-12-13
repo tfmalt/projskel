@@ -46,7 +46,7 @@ has 'title' => (
     builder => '_fetch_title',
 );
 
-has 'homepage_id' => ( isa => 'Int', is  => 'rw' );
+has 'homepage' => ( isa => 'HashRef', is  => 'rw' );
 
 sub _fetch_space {
     my $self = shift;
@@ -132,6 +132,7 @@ sub create_project_homepage {
     $c->{templates}->{homepage}->{id}    = $root->{id};
     $c->{templates}->{homepage}->{title} = $root->{title}; 
     $w->storePage($root);
+    $self->homepage($root);
 
     return 1;
 }
