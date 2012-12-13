@@ -27,7 +27,9 @@ SKIP: {
     is ($ps->space, "BAC",                "got correct space");
     is ($ps->title, "XYZZY Test Project", "got correct title");
 
-    dd($ps->config);
+    my $result = $ps->create_project_skeleton();
+    ok($result);
 };
+
 
 done_testing();
