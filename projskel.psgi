@@ -38,7 +38,7 @@ my $app = sub {
     # Dealing with croaks and wierd unexpected events.
     eval {
         my $result = $ps->create_project_skeleton();
-    }
+    };
     if ($@) {
         return [
             500,
@@ -46,7 +46,7 @@ my $app = sub {
             ['<html><body>',
              '<h1>500 - Something wierd, but not entirely unexpected happended</h1>',
              '<pre>',
-             $@
+             $@,
              '</pre>',
              '</body></html>',
             ],
@@ -57,13 +57,8 @@ my $app = sub {
     # Redirecting back to wiki when everything goes ok.
     return [
         303,
-        [ 'Location'     => $homepage->{url}, 
+        [ 'Location'     => $ps->homepage->{url}, 
           'Content-Type' => 'text/plain' ], 
-        [ "got data:\n", "logger: ", 
-          pp($req->parameters), "\n", 
-          pp($env), "\n", ref($wiki), "\n",
-          "title: ", $title, "  space: ", $space, "\n",
-          pp($homepage), pp($homepage_template)
-        ]
+        [ "got data:\n" ]
     ];
 };
