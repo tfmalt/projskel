@@ -15,6 +15,8 @@ SKIP: {
     my $params = Hash::MultiValue->new(
         path => "/display/BAC/XYZZY+Test+Project",
         host => "wiki.startsiden.no",
+        projectlead => "Thomas Malt",
+        projectowner => "Malt Thomas",
     );
     my $ps = Startsiden::Confluence::ProjectSkeleton->new(params => $params);
     isa_ok($ps, 'Startsiden::Confluence::ProjectSkeleton');

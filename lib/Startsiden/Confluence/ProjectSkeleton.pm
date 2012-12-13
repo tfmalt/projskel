@@ -187,7 +187,11 @@ sub create_page_from_template {
 sub handle_mandate {
     my ($self, $tmpl) = @_;
 
-    $self->logger->debug('Got handle mandate:' . pp($self->params));
+    # $self->logger->debug('Got handle mandate:' . pp($self->params));
+    $tmpl->{content} =~ s/##project_name##/$self->homepage->{title}/;
+    #    $tmpl->{content} =~ s/##document_author##/$self->params->{author}/;
+    $tmpl->{content} =~ s/##project_owner##/$self->params->{projectowner}/;
+    $tmpl->{content} =~ s/##project_lead##/$self->params->{projectlead}/;    
 
     return $tmpl;
 }
