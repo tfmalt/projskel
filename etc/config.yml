@@ -28,7 +28,7 @@ templates:
         title: "Project Plan"
         parent: "homepage"
     status: 
-        name: "Project Status Reports Main Page"
+        name: "Project Status Reports Main Page Template"
         title: "Status Reports"
         parent: "homepage"
 
