@@ -45,9 +45,9 @@ my $app = sub {
             ['content-type' => 'text/html'],
             ['<html><body>',
              '<h1>500 - Something wierd, but not entirely unexpected happended</h1>',
-             '<pre>',
+             '<tt>',
              $@,
-             '</pre>',
+             '</tt>',
              '</body></html>',
             ],
         ];
