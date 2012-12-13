@@ -4,10 +4,31 @@ user: username
 pass: password
 template_space: 'IN'
 templates:
-    homepage: "Project Home Page Template"
-    docs:     "Project Documentation Main Page Template"
-    minutes:  "Project Meeting Minutes Main Page Template"
-    mandate:  "Project Mandate Template"
-    plan:     "Project Plan Template"
-    status:   "Project Status Reports Main Page"
+    homepage: 
+        name: "Project Home Page Template"
+    docs: 
+        name: "Project Documentation Main Page Template"
+        title: "Documentation"
+        parent: "homepage"
+    minutes: 
+        name: "Project Meeting Minutes Main Page Template"
+        title: "Meeting Minutes"
+        parent: "homepage"
+    # retrospective: 
+    #    name: "Sprint Retrospective Template"
+    #    parentid: "minutes"
+    # sprintreview:
+    #    name: "
+    mandate: 
+        name: "Project Mandate Template"
+        title: "Project Mandate"
+        parent: "homepage"
+    plan: 
+        name: "Project Plan Template"
+        title: "Project Plan"
+        parent: "homepage"
+    status: 
+        name: "Project Status Reports Main Page"
+        title: "Status Reports"
+        parent: "homepage"
 
