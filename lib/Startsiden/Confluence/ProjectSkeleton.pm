@@ -5,7 +5,7 @@ use namespace::autoclean;
 use File::Basename;
 use Carp;
 use YAML::XS;
-use Data::Dump;
+use Data::Dump qw(pp);
 use Confluence;
 
 has 'config' => (
