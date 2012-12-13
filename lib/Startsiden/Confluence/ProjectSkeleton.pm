@@ -106,11 +106,10 @@ sub create_project_skeleton {
         croak "homepage template not defined. syntax error.";
     }
     
-    my $tmpl = undef;
     # Create and set the root page of the project    
     $self->create_project_homepage();
 
-    foreach (my $key = keys %{$templates}) {
+    for my $key (keys %{$templates}) {
         next if ($key eq 'homepage');
         $self->create_page_from_template($key);
     }
@@ -175,7 +174,7 @@ sub create_page_from_template {
     };
 
     $page = $w->storePage($page);
-    $self->set_page_key($key, $page->{id});
+    $self->set_page_id($key, $page->{id});
     
     return 1;
 }
