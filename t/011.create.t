@@ -8,7 +8,6 @@ use Startsiden::Confluence::ProjectSkeleton;
 use Data::Dump;
 use Hash::MultiValue;
 
-
 my $params = Hash::MultiValue->new(
     path => "/display/BAC/XYZZY+Test+Project",
     host => "wiki.startsiden.no",
